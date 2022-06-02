@@ -1,0 +1,33 @@
+.react-datetime-picker {
+    width: 100%;
+    height: 40px;
+}
+
+.react-datetime-picker__wrapper {
+    display: flex;
+    flex-grow: 1;
+    flex-shrink: 0;
+    border-radius: 5px;
+    border: 1px solid rgb(228, 228, 228);
+}
+
+.react-calendar {
+    border: 1px solid rgb(228, 228, 228);
+    border-radius: 3px;
+    width: 100%;
+    margin-top: 10px;
+    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+}
+
+.react-calendar__month-view__weekdays {
+    text-transform: capitalize;
+    font-size: 1.rem;
+}
+
+.react-datetime-picker__inputGroup {
+    padding-left: 1rem;
+}
+
+.react-datetime-picker__button {
+    padding: 4px 12px;
+}

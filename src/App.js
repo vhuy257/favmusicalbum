@@ -1,11 +1,12 @@
 import React from 'react';
-import { Heading } from '@chakra-ui/react'
+import { Container } from '@chakra-ui/react'
+import CreateAlbum from './components/CreateAlbum/CreateAlbum';
 
 function App() {
   return (
-    <div className="App">
-      <Heading>Create music album</Heading>
-    </div>
+    <Container className="app">
+      <CreateAlbum/>
+    </Container>
   );
 }
 
