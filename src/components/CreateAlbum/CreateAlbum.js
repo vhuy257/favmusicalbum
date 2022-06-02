@@ -18,22 +18,29 @@ import shortid from 'shortid';
 import {
     createAlbum
 } from '../../services/AlbumService';
+import {
+    createAlbumAction
+} from '../../store/actions';
 import './react-datetime-picker.css';
 
-const CreateAlbum = () => {
+const CreateAlbum = ({dispatch}) => {
     const [AlbumDate, onChange] = useState(new Date());
     const AlbumNameRef = useRef(null);
     const AlbumImageRef = useRef(null);
 
-    const addAlbum = () => {
+    const addAlbum = async () => {
         const album = {
             id: shortid(),
             name: AlbumNameRef.current.value,
             date: AlbumDate,
             imageUrl: AlbumImageRef.current.value
+        };
+        const resultAlbum = await createAlbum(album);
+        dispatch(createAlbumAction(resultAlbum));
+        if(resultAlbum) { // Clear form data after add new album
+            AlbumNameRef.current.value = '';
+            AlbumImageRef.current.value = '';
         }
-        console.log(album);
-        createAlbum(album);
     }
 
     return (
@@ -42,7 +49,7 @@ const CreateAlbum = () => {
             <FormControl>
                 <Box>
                     <FormLabel htmlFor='album-name'>Name</FormLabel>
-                    <Input ref={AlbumNameRef} id='album-name' className='album__name' />
+                    <Input ref={AlbumNameRef} id='album-name' className='album__name' onKeyDown={(e) => {e.key === 'Enter' && addAlbum()}} />
                 </Box>
                 <Box mt='4' mb='4'>
                     <FormLabel htmlFor='album-date'>Date release</FormLabel>
@@ -58,7 +65,7 @@ const CreateAlbum = () => {
                 <Box>
                     <FormLabel htmlFor='album-image-url'>Url image</FormLabel>
                     <InputGroup>
-                        <Input ref={AlbumImageRef} id='album-image-url' className='album-image-url' />
+                        <Input ref={AlbumImageRef} id='album-image-url' className='album-image-url' onKeyDown={(e) => {e.key === 'Enter' && addAlbum()}} />
                         <InputRightElement children={<AiOutlineLink />} />
                     </InputGroup>
                 </Box>

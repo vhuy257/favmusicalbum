@@ -1,6 +1,7 @@
 import { getDb, setDb} from "./db";
 
-export const createAlbum = (album) => {
+export const createAlbum = async(album) => {
     const dbLocal = [...getDb(), album];
-    return setDb(dbLocal);
+    await setDb(dbLocal);
+    return album;
 }
