@@ -1,0 +1,17 @@
+{
+    "create": {
+        "album": "Tạo danh sách âm nhạc",
+        "name": "Tên",
+        "description": "Mô tả",
+        "date": "Ngày phát hành",
+        "addButton": "Thêm vào danh sách"
+    },
+    "list": {
+        "title": "Danh sách yêu thích"
+    },
+    "filter": {
+        "filter": "Lọc",
+        "name": "Tên",
+        "day": "Ngày"
+    }
+}

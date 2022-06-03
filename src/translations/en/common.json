@@ -1,0 +1,17 @@
+{
+    "create": {
+        "album": "Create music album",
+        "name": "Name",
+        "description": "Description",
+        "date": "Date release",
+        "addButton": "Add to List"
+    },
+    "list": {
+        "title": "List favorite album"
+    },
+    "filter": {
+        "filter": "Filter",
+        "name": "Name",
+        "day": "Day"
+    }
+}
