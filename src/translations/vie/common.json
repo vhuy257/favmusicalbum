@@ -7,7 +7,14 @@
         "addButton": "Thêm vào danh sách"
     },
     "list": {
-        "title": "Danh sách yêu thích"
+        "title": "Danh sách yêu thích",
+        "empty": "Bạn không có sản phẩm nào trong dánh sách yêu thích"
+    },
+    "confirm": {
+        "title": "Xác nhận thay đổi",
+        "content": "Bạn có chắc là muốn xóa album không?",
+        "yes": "Có",
+        "no": "Không"
     },
     "filter": {
         "filter": "Lọc",

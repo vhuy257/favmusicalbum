@@ -29,7 +29,6 @@ function reducer(state, action) {
     switch (action.type) {
         case CREATE_ALBUM:
             let newListAlbum = [...state.listAlbum, action.payload];
-            console.log([...state.listAlbum, action.payload]);
             const sortListAlbum = sortList(newListAlbum, state.sortBy);
             return {
                 ...state,

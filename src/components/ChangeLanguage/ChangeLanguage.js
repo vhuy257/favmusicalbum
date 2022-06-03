@@ -11,7 +11,7 @@ import { BiChevronDown } from 'react-icons/bi';
 
 const ChangeLanguage = () => {
     const [lang, setLang] = useState('en');
-    const [, i18n] = useTranslation('common');
+    const [ ,i18n] = useTranslation('common');
 
     return (
         <Flex justify='right'>

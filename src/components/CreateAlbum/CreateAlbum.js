@@ -9,8 +9,8 @@ import {
     Input,
     Textarea,
     FormErrorMessage,
-    useToast,
-    useMediaQuery 
+    useMediaQuery,
+    useToast, 
 } from "@chakra-ui/react";
 import DateTimePicker from 'react-datetime-picker';
 import { MdAdd } from 'react-icons/md';
@@ -30,7 +30,7 @@ const CreateAlbum = ({dispatch}) => {
     const InputNameRef = useRef(null);    
     const TextAreaRef  = useRef(null);
     const [isInvalid, setIsInvalid]      = useState(false);
-    const [isLargerThan1280] = useMediaQuery('(min-width: 1280px)');
+    const [isLargerThan1280] = useMediaQuery('(min-width: 1280px)');    
     const toast = useToast();
     const [t] = useTranslation('common');
 
@@ -44,8 +44,6 @@ const CreateAlbum = ({dispatch}) => {
                 marked: false,
             };
             
-            console.log(AlbumDate.toISOString());
-
             if(InputNameRef.current.value === '') {
                 setIsInvalid(true);
                 return null;
@@ -63,13 +61,12 @@ const CreateAlbum = ({dispatch}) => {
                     description: "We've created your album item and added to list.",
                     status: 'success',
                     duration: 3000,
-                    isClosable: true,
-                })
+                });                
             }
         } catch (error) {
             toast({
                 title: 'Error!',
-                description: `error . Please create again!!`,
+                description: `${error} . Please create again!!`,
                 status: 'error',
                 duration: 2000,
                 isClosable: true,

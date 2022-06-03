@@ -14,6 +14,7 @@ import {
     Button,
     useDisclosure,
     Tooltip,
+    useToast,
     useMediaQuery,
 } from '@chakra-ui/react';
 import { HiOutlineMusicNote } from 'react-icons/hi';
@@ -37,19 +38,54 @@ const ListAlbum = ({listAlbum, dispatch, display}) => {
     const [ selectedId, setSelectedId ] = useState(null);
     const cancelRef = React.useRef();
     const [isLargerThan1280] = useMediaQuery('(min-width: 1280px)');
+    const toast = useToast();
     const [t] = useTranslation('common');
 
     const removeList = async(id) => {
-        if(id) {
-            await deleteItemAlbum(id);
-            dispatch(removeItemFromListAction(id));
-            onClose();
+        try {
+            if(id) {
+                await deleteItemAlbum(id);
+                dispatch(removeItemFromListAction(id));
+                onClose();
+                toast({
+                    title: 'Item removed!.',
+                    description: "We've removed your album item.",
+                    status: 'success',
+                    duration: 3000,
+                    isClosable: true,
+                });
+            }
+        } catch (error) {
+            toast({
+                title: 'Error!',
+                description: `${error}`,
+                status: 'error',
+                duration: 2000,
+                isClosable: true,
+            });
         }
     }
 
     const markAlbumAsBest = async(id) => {
-        await markAlbum(id);
-        dispatch(markAlbumAsBestAction(id));
+        try {
+            await markAlbum(id);
+            dispatch(markAlbumAsBestAction(id));
+            toast({
+                title: 'Item updated!.',
+                description: "We've updated your album item.",
+                status: 'success',
+                duration: 3000,
+                isClosable: true,
+            });
+        } catch (error) {
+            toast({
+                title: 'Error!',
+                description: `${error}`,
+                status: 'error',
+                duration: 2000,
+                isClosable: true,
+            });
+        }
     }
 
     const openDialog = (id) => {
@@ -66,7 +102,7 @@ const ListAlbum = ({listAlbum, dispatch, display}) => {
             <FilterAlbum dispatch={dispatch} display={display}/>
             {
                 !listAlbum.length && (
-                    <Box textAlign='center' mt='10'><Text color="gray.600">You have no favorite album in List</Text></Box>
+                    <Box textAlign='center' mt='10'><Text color="gray.600">{t('list.empty')}</Text></Box>
                 )
             }
             <Flex color='black' flexWrap='wrap' mt='10'>
@@ -133,17 +169,17 @@ const ListAlbum = ({listAlbum, dispatch, display}) => {
                 <AlertDialogOverlay />
 
                 <AlertDialogContent>
-                <AlertDialogHeader>Discard Changes?</AlertDialogHeader>
+                <AlertDialogHeader>{t('confirm.title')}</AlertDialogHeader>
                 <AlertDialogCloseButton />
                 <AlertDialogBody>
-                    Are you sure you want to delete this album?
+                    {t('confirm.content')}
                 </AlertDialogBody>
                 <AlertDialogFooter>
                     <Button ref={cancelRef} onClick={onClose}>
-                    No
+                    {t('confirm.no')}
                     </Button>
                     <Button colorScheme='red' ml={3} onClick={(e) => {removeList(selectedId)}}>
-                    Yes
+                    {t('confirm.yes')}
                     </Button>
                 </AlertDialogFooter>
                 </AlertDialogContent>
